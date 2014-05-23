@@ -1,0 +1,40 @@
+{
+  "name": "diveviz",
+  "version": "0.0.1",
+  "description": "A platform to allow graphical representation of data and navigation through different hierarchy levels",
+  "keywords": [
+    "data",
+    "visualization",
+    "navigation",
+    "d3.js"
+  ],
+  "repository" : {
+  	"type" : "git",
+		"url" : "https://github.com/dominicbosch/diveviz/"
+  },
+  "author": {
+    "name": "Dominic Bosch",
+    "email": "dominic.bosch@bosch-willi.ch>"
+  },
+  "bin": {
+    "diveviz": "./bin/diveviz"
+  },
+  "bugs": {
+    "url": "https://github.com/dominicbosch/diveviz/issues",
+    "email": "bugs@bosch-willi.ch"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10.28"
+  },
+  "dependencies": {
+    "optimist": "^0.6.9"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.0",
+    "grunt-contrib-uglify": "^0.4.0"
+  }
+}

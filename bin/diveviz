@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var nconf = require( 'nconf' );
+
+nconf.argv({
+	"h": {
+		alias: 'help',
+		describe: 'Display what you are looking at'
+		// ,
+		// demand: true,
+		// default: '3'
+	}
+});
