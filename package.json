@@ -8,9 +8,9 @@
     "navigation",
     "d3.js"
   ],
-  "repository" : {
-  	"type" : "git",
-		"url" : "https://github.com/dominicbosch/diveviz/"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominicbosch/diveviz/"
   },
   "author": {
     "name": "Dominic Bosch",
@@ -33,8 +33,14 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jade": "^0.11.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.4.0",
-    "grunt-contrib-uglify": "^0.4.0"
+    "grunt-contrib-qunit": "^0.4.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.8.3",
+    "karma": "^0.12.16",
+    "phantomjs": "^1.9.7-6"
   }
 }

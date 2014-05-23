@@ -1,6 +1,10 @@
 
 module.exports = function( grunt ) {
 
+  var globalConfig = {
+    system: 'dev'
+  };
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( 'package.json' ),
 
@@ -23,11 +27,11 @@ module.exports = function( grunt ) {
 			},
 			server: {
 				src: [ 'src/server/**/*.js' ],
-				dest: 'dist/<%= pkg.name %>-server.js'
+				dest: 'dist/<%= globalConfig.system %>/server/<%= pkg.name %>-server.js'
 			},
 			client: {
 				src: [ 'src/client/**/*.js' ],
-				dest: 'dist/<%= pkg.name %>-client.js'
+				dest: 'dist/<%= globalConfig.system %>/client/<%= pkg.name %>-client.js'
 			}
 		},
 
@@ -37,30 +41,70 @@ module.exports = function( grunt ) {
 			},
 			server: {
 				files: {
-					'dist/<%= pkg.name %>-server.min.js': ['<%= concat.server.dest %>']
+					'dist/<%= globalConfig.system %>/server/<%= pkg.name %>-server.min.js': [
+						'<%= concat.server.dest %>'
+					]
 				}
 			},
 			client: {
 				files: {
-					'dist/<%= pkg.name %>-client.min.js': ['<%= concat.client.dest %>']
+					'dist/<%= globalConfig.system %>/client/<%= pkg.name %>-client.min.js': [
+						'<%= concat.client.dest %>'
+					]
 				}
 			}
 		},
 		
 		nodeunit: {
-			all: ['test/*_test.js']
+			all: ['test/server/**/*.js']
+		},
+
+		karma: {
+			unit: {
+				options: {
+					files: ['test/client/**/*.js']
+				},
+				background: true
+			}
+		},
+
+		jade: {
+			debug: {
+				options: {
+					data: {
+						debug: true
+					}
+				},
+				files: {
+					"debug/debug.html": [ "test.jade" ]
+				}
+			},
+			release: {
+				options: {
+					data: {
+						debug: false
+					}
+				},
+				files: {
+					"src/client/release.html": [ "test.jade" ]
+				}
+			}
 		}
 
 	});
 
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-nodeunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+	grunt.loadNpmTasks( 'grunt-contrib-jade' );
+	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 
 	grunt.registerTask( 'default', 'Giving you hints', [ 'jshint'] );
 	grunt.registerTask( 'dev', 'Globbing development', [ 'jshint' ] );
-	grunt.registerTask( 'dist', 'Globbing everything', [ 'jshint', 'concat', 'uglify' ] );
+	grunt.registerTask( 'dist-dev', 'Development distribution', [ 'jshint' ] );
+	grunt.registerTask( 'dist-prod', 'Productive distribution', [ 'jshint', 'concat', 'uglify' ] );
 
 	grunt.registerTask( 'location', 'Runs a task for a specified location (client / server)', function ( arg ) {
 		if( arg ) {

@@ -14,3 +14,27 @@ INSTALLATION
 	- Create database `diveviz_example`
 
 - Node.js v0.10.28
+
+
+
+
+USAGE
+-----
+
+### Production
+
+
+
+### Development
+
+It's getting grunty here:
+
+ - Get code hints
+
+    grunt jshint [server|client]
+
+ - Deploy testing
+
+    grunt testing [server|client]
+
+
